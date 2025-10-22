@@ -1,0 +1,38 @@
+[
+  {
+    "id": "pa20u9okamh1pp9kd",
+    "title": "STM32 GPIO 入门与常见坑",
+    "category": "STM32",
+    "tags": [
+      "STM32",
+      "GPIO",
+      "HAL"
+    ],
+    "date": "2025-10-12",
+    "content": "# STM32 GPIO 入门与常见坑\n\n**目标**：快速把 GPIO 配置起来并避免常见问题。\n\n## 关键点\n- 时钟：先使能 `__HAL_RCC_GPIOx_CLK_ENABLE()`\n- 模式：推挽/开漏 + 上拉/下拉\n- 速度：不要一上来就 Very High\n- 复用：查 `AFx` 映射表\n\n```c\nGPIO_InitTypeDef GPIO_Init = {0};\n__HAL_RCC_GPIOA_CLK_ENABLE();\nGPIO_Init.Pin = GPIO_PIN_5;\nGPIO_Init.Mode = GPIO_MODE_OUTPUT_PP;\nGPIO_Init.Pull = GPIO_NOPULL;\nGPIO_Init.Speed = GPIO_SPEED_FREQ_LOW;\nHAL_GPIO_Init(GPIOA, &GPIO_Init);\n```\n\n> 小贴士：外设复用时一定要同时配置 `AF` 和 `Mode`。"
+  },
+  {
+    "id": "pochyxpr1mh1pp9kd",
+    "title": "C 指针速查：从地址到数组",
+    "category": "C",
+    "tags": [
+      "C",
+      "指针",
+      "内存"
+    ],
+    "date": "2025-09-15",
+    "content": "# C 指针速查\n\n- `&` 取地址，`*` 解引用  \n- 数组名在表达式中会衰减为指向首元素的指针  \n- `const` 位置不同，语义不同：`const int *p` vs `int * const p`\n\n```c\nint a = 10;\nint *p = &a;  // p 保存 a 的地址\nprintf(\"%d\\n\", *p); // 解引用得到 10\n```\n\n[CPPReference：指针](https://en.cppreference.com/w/c/language/pointer)"
+  },
+  {
+    "id": "poxq1arz9mh1pp9kd",
+    "title": "C++ 智能指针一页纸",
+    "category": "C++",
+    "tags": [
+      "C++",
+      "智能指针",
+      "RAII"
+    ],
+    "date": "2025-08-28",
+    "content": "# C++ 智能指针\n\n- `unique_ptr`：独占所有权，禁止拷贝，可移动  \n- `shared_ptr`：共享所有权，引用计数  \n- `weak_ptr`：观察者，不影响计数，解决环引用  \n\n```cpp\nauto p = std::make_unique<int>(42);\n```\n\n> 经验：优先使用 `unique_ptr`，必要时再考虑 `shared_ptr`。"
+  }
+]

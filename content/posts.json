@@ -44,17 +44,5 @@
     ],
     "date": "2025-09-15",
     "content": "# C 指针速查\n\n- `&` 取地址，`*` 解引用  \n- 数组名在表达式中会衰减为指向首元素的指针  \n- `const` 位置不同，语义不同：`const int *p` vs `int * const p`\n\n```c\nint a = 10;\nint *p = &a;  // p 保存 a 的地址\nprintf(\"%d\\n\", *p); // 解引用得到 10\n```\n\n[CPPReference：指针](https://en.cppreference.com/w/c/language/pointer)"
-  },
-  {
-    "id": "poxq1arz9mh1pp9kd",
-    "title": "C++ 智能指针一页纸",
-    "category": "C++",
-    "tags": [
-      "C++",
-      "智能指针",
-      "RAII"
-    ],
-    "date": "2025-08-28",
-    "content": "# C++ 智能指针\n\n- `unique_ptr`：独占所有权，禁止拷贝，可移动  \n- `shared_ptr`：共享所有权，引用计数  \n- `weak_ptr`：观察者，不影响计数，解决环引用  \n\n```cpp\nauto p = std::make_unique<int>(42);\n```\n\n> 经验：优先使用 `unique_ptr`，必要时再考虑 `shared_ptr`。"
   }
 ]
